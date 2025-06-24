@@ -2,7 +2,7 @@
 const int ldrPin = A0;     // Pin connected to LDR (Light Dependent Resistor)
 const int redPin = 9;      // Red channel of RGB LED (PWM pin)
 const int greenPin = 10;   // Green channel of RGB LED (PWM pin)
-const int bluePin = 11;    // Blue channel of RGB LED (PWM pin)
+const int purplePin = 11;    // Purple channel of RGB LED (PWM pin)
 
 // Light thresholds (adjust these based on your actual lighting conditions)
 int darkThreshold = 800;     // Above this value, it's considered dark
@@ -12,7 +12,7 @@ void setup() {
   // Set RGB LED pins as output
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
-  pinMode(bluePin, OUTPUT);
+  pinMode(purplePin, OUTPUT);
 
   // Start serial communication for monitoring light level
   Serial.begin(9600);
@@ -28,8 +28,8 @@ void loop() {
 
   // Conditional logic based on light level:
   if (lightLevel > darkThreshold) {
-    // If it's dark → turn LED blue
-    setColor(0, 0, 255);
+    // If it's dark → turn LED purple
+    setColor(128, 0, 128);
   } else if (lightLevel < brightThreshold) {
     // If it's bright → turn LED red
     setColor(255, 0, 0);
@@ -42,8 +42,8 @@ void loop() {
 }
 
 // Function to set RGB LED color using PWM values (0–255)
-void setColor(int red, int green, int blue) {
+void setColor(int red, int green, int purple) {
   analogWrite(redPin, red);
   analogWrite(greenPin, green);
-  analogWrite(bluePin, blue);
+  analogWrite(purplePin, purple);
 }
